@@ -88,40 +88,35 @@ dockerlogs --help
 
 ## Cleanup
 
-
 ```bash
-# Kill the example docker images
+# Kill the example docker images and the daemon
 docker kill $(docker ps -q -f "name=node_example")
+docker kill $(docker ps -q -f "name=docker-logs-daemon")
 ```
 
-### Future Improvements
+## Extending the Storage Layers
+A storage layer has a simple interface:
+```go
+// Storage implements Storage reading and writing
+type Storage interface {
+	Writer(streamName string) (io.WriteCloser, error)
+	Reader(streamName string) (io.ReadCloser, error)
+	List() ([]string, error)
+}
+```
+While Stream groups are managed on the storage layer itself (file path, db table/collection, s3 bucket, etc.) - 
+stream names are managed on each api call itself.
+
+Implementing a Storage layer is quite trivial - simply provide a byteslice ([]byte) reader and writer, and the io packages will be used to stream the logs.
+
+## Future Improvements
 
 * Make the daemon docker image thin (use builder image for build and scratch for runtime)
 * Find a way to not give the daemon root permissions (maybe use a docker unix sock permission proxy)
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
 ## Known Issues
 
 * When deleting a specific log from the storage folder - you have to re-run the daemon - it won't re-create the file on error
-
-
 
 ## Built With
 
