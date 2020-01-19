@@ -80,7 +80,6 @@ docker ps -f "label=collect_logs=true"
 
 ```bash
 # Install the CLI
-cd docker-logs-cli
 npm i -g docker-logs-cli/
 
 # Now you can invoke the CLI directly
