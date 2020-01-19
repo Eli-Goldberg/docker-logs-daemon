@@ -21,7 +21,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install and how to install them
 
 * docker installed locally
 * NodeJS (install easily with NVM on unix machines)
@@ -105,7 +105,7 @@ type Storage interface {
 }
 ```
 While Stream groups are managed on the storage layer itself (file path, db table/collection, s3 bucket, etc.) - 
-stream names are managed on each api call itself.
+stream names are managed on each api call.
 
 Implementing a Storage layer is quite trivial - simply provide a byteslice ([]byte) reader and writer, and the io packages will be used to stream the logs.
 
@@ -130,10 +130,4 @@ Implementing a Storage layer is quite trivial - simply provide a byteslice ([]by
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+This project is licensed under the MIT License
