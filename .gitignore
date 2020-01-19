@@ -1,3 +1,4 @@
 **/node_modules
 **/.vscode
 docker-logs-daemon/dist
+docker-logs-daemon/logs

@@ -36,7 +36,7 @@ cd docker-logs-daemon
 docker build -t docker-logs-daemon .
 
 # Run the Daemon to start collecting the logs
-docker run --rm -it \
+docker run --rm -d \
 --name docker-logs-daemon \
 --privileged \
 -e DOCKER_HOST="unix:///var/run/docker.sock" \
